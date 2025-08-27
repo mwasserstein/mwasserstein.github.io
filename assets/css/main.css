@@ -2667,3 +2667,8 @@ input, select, textarea {
 		      margin-left: -0.36em;
 		      margin-right: -0.15em;
 		    }
+
+
+body {
+  font-style: normal !important;
+}
