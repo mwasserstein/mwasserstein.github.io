@@ -1,234 +1,501 @@
-<!DOCTYPE HTML>
-<!--
-	Prologue by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<!-- This is a comment -->
-<html>
-	<head>
-		<title> Michael Wasserstein</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
-		<meta name="google-site-verification" content="5KoW1RL9rwXSKOIaW6xdx46pPQYBHaggvRbODOXHM6k" />
-		
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Michael Wasserstein</title>
+  <meta name="description" content="Michael Wasserstein — PhD candidate in Atmospheric Sciences at the University of Utah, specializing in orographic precipitation, data science, and numerical modeling." />
+  <meta name="google-site-verification" content="5KoW1RL9rwXSKOIaW6xdx46pPQYBHaggvRbODOXHM6k" />
 
-		<!-- Header -->
-			<div id="header">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-				<div class="top">
+  <!-- Icons -->
+  <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
 
-					<!-- Logo -->
-						<div id="logo">
-							<h1 id="title">Michael Wasserstein</h1>
-							<p>Atmospheric Scientist</p>
-						</div>
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/style.css" />
 
-					<!-- Nav -->
-						<nav id="nav">
-							<ul>
-								<li><a href="#top" id="top-link"><span class="icon solid fa-home">Intro</span></a></li>
-								<li><a href="#about" id="about-link"><span class="icon solid fa-user">About Me</span></a></li>
-								<li><a href="#projects" id="projects-link"><span class="icon solid fa-th">Projects</span></a></li>
-								<li><a href="#skills" id="skills-link"><span class="icon solid fa-tools">Skills</span></a></li>
-								<li><a href="docs/Michael_Wasserstein_CV.pdf" id="personal-link"><span class="fa-sharp fa-thin fa-file">CV</span></a></li>
-								<li><a href="#contact" id="contact-link"><span class="icon solid fa-envelope">Contact</span></a></li>
-							</ul>
-						</nav>
+  <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+</head>
 
-				</div>
+<body>
 
-				<div class="bottom">
+  <!-- ── Navbar ─────────────────────────────────────────── -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="#hero" class="nav-logo">Michael Wasserstein</a>
 
-					<!-- Social Icons -->
-						<ul class="icons">
-							<li><a href="https://www.linkedin.com/in/michael-wasserstein-381563161/" target="_blank" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
-							<li><a href="https://github.com/mwasserstein" target="_blank" class="icon brands fa-github"><span class="label">Github</span></a></li>
-							<li><a href="mailto:michael.wasserstein@utah.edu" target="_blank" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-						</ul>
+      <ul class="nav-links">
+        <li><a href="#" data-page="about">About</a></li>
+        <li><a href="#" data-page="education">Education</a></li>
+        <li><a href="#" data-page="experience">Experience</a></li>
+        <li><a href="#" data-page="projects">Projects</a></li>
+        <li><a href="#" data-page="skills">Skills</a></li>
+        <li><a href="#" data-page="contact">Contact</a></li>
+        <li><a href="docs/Michael_Wasserstein_CV.pdf" target="_blank" class="nav-cta"><i class="fas fa-file-alt"></i> CV</a></li>
+      </ul>
 
-				</div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
 
-			</div>
+    <!-- Mobile menu -->
+    <nav class="nav-mobile" id="nav-mobile">
+      <a href="#" data-page="about" class="mobile-link">About</a>
+      <a href="#" data-page="education" class="mobile-link">Education</a>
+      <a href="#" data-page="experience" class="mobile-link">Experience</a>
+      <a href="#" data-page="projects" class="mobile-link">Projects</a>
+      <a href="#" data-page="skills" class="mobile-link">Skills</a>
+      <a href="#" data-page="contact" class="mobile-link">Contact</a>
+      <a href="docs/Michael_Wasserstein_CV.pdf" target="_blank">CV &rarr;</a>
+    </nav>
+  </header>
 
-		<!-- Main -->
-			<div id="main">
+  <main>
 
-				<!-- Intro -->
-					<section id="top" class="one dark cover">
-						<div class="container">
+    <!-- ── Hero ───────────────────────────────────────────── -->
+    <div class="page active" id="page-hero">
+    <section id="hero">
+      <div class="container">
+        <div class="hero-inner">
 
-							<header>
-								<h2>Hi! I'm Michael Wasserstein, and I'm a <br />
-								PhD student in the department of Atmospheric <br /> 
-								Sciences at the University of Utah, <br /> 
-								where I study orographic precipitation <br /> 
-								in Utah's Wasatch mountains.</h2>
-								<p>Welcome to my website, which contains information <br />
-								about me and some of my work.</p>
-							</header>
+          <div class="hero-text">
+            <div class="hero-badge">
+              <i class="fas fa-snowflake"></i> PhD Candidate · University of Utah
+            </div>
 
-							<footer>
-								<img src="images/Zermatt.jpeg" alt="Me in Zermatt, Switzerland" width="472" height="416">
-							</footer>
+            <h1>Michael<br /><span>Wasserstein</span></h1>
 
-						</div>
-					</section>
-				
-				<!-- About Me -->
-					<section id="about" class="three">
-						<div class="container">
+            <p>Atmospheric scientist specializing in orographic precipitation,
+               numerical weather modeling, and data-driven approaches to understanding
+               mountain weather systems.</p>
 
-							<header>
-								<h2>About Me</h2>
-							</header>
+            <div class="hero-actions">
+              <a href="#" data-page="projects" class="btn btn-primary">
+                <i class="fas fa-th-large"></i> View My Work
+              </a>
+              <a href="docs/Michael_Wasserstein_CV.pdf" target="_blank" class="btn btn-outline">
+                <i class="fas fa-file-alt"></i> Download CV
+              </a>
+            </div>
 
-							<span class="image">
-    							<img src="Headshot.jpg" alt="Profile Photo" style="width: 250px;" />
-							</span>
+            <div class="hero-social">
+              <a href="https://www.linkedin.com/in/michael-wasserstein-381563161/" target="_blank" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="https://github.com/mwasserstein" target="_blank" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="mailto:michael.wasserstein@utah.edu" aria-label="Email">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+          </div>
 
-							<p> After finishing my B.A. in physics from Middlebury College in spring 2021, I began 
-							my studies at the University of Utah, researching orographic precipitation extremes in Utah's Wasatch mountains.
-							I completed my M.S. degree in May 2023, and I am now embarking on my PhD journey. My passion
-							for weather sparked at a young age, when I was a ski racer in Connecticut. Prone to wintertime 
-							freeze-thaw cycles, Connecticut is not the best place for people who want lots of snow. This
-							led me to constantly read weather reports, searching for any indication of snow. From there,
-							my passion for weather grew, leading to my desire to pursue a career as a meteorologist.
-							</p>
+          <div class="hero-photo">
+            <img src="Headshot.jpg" alt="Michael Wasserstein" />
+          </div>
 
-						</div>
-					</section>
+        </div>
+      </div>
+    </section>
 
-				<!-- Projects -->
-					<section id="projects" class="two">
-						<div class="container">
+    </div><!-- /page-hero -->
 
-							<header>
-								<h2>Projects</h2>
-							</header>
+    <!-- ── About ──────────────────────────────────────────── -->
+    <div class="page" id="page-about">
+    <section id="about">
+      <div class="container">
+        <span class="section-label">About</span>
+        <h2 class="section-title">About Me</h2>
+        <div class="about-inner">
+          <p>
+            I am a PhD candidate in Atmospheric Sciences at the University of Utah,
+            where I study orographic precipitation in Utah's Wasatch mountains. My research
+            combines observational analysis, high-resolution numerical simulations, and
+            data science techniques to understand the dynamics and predictability of
+            mountain snowfall.
+          </p>
+          <p>
+            I earned my B.A. in Physics from Middlebury College in 2021, and my M.S. in
+            Atmospheric Sciences from the University of Utah in 2023. My master's thesis
+            characterized orographic snowfall extremes in the central Wasatch using
+            long-term observational datasets.
+          </p>
+          <p>
+            My interest in weather began as a ski racer in Connecticut, where freeze-thaw
+            cycles made every snowstorm feel like a gift. That early curiosity grew into a
+            career focused on better understanding the complex physics that govern
+            precipitation in mountainous terrain.
+          </p>
+        </div>
+      </div>
+    </section>
 
-							<p>Here is a sampling of some of my work. Click each item to view more.</p>
+    </div><!-- /page-about -->
 
-							<div class="row">
-								<div class="col-4 col-12-mobile">
-									<article class="item">
-										<a href="https://www.inscc.utah.edu/~u1371671/SNOWSCAPE_Dashboard/DASH_example.jpg" target="_blank" class="image fit"><img src="images/DASH_202602181549.jpg" width = "294.16666667" height = "auto" alt="SNOWSCAPE Dashboard" /></a>
-										<header>
-											<h3><strong>SNOWSCAPE Dashboard</strong></h3>
-											<p> To support the field operations phase of the SNOWSCAPE field campaign, which displayed quasi-real-time data from several instruments in the northern Wasatch mountains.</p>
-										</header>
-									</article>
-								</div>
-								
-								<div class="col-4 col-12-mobile">
-									<article class="item">
-										<a href="https://journals.ametsoc.org/view/journals/mwre/aop/MWR-D-23-0206.1/MWR-D-23-0206.1.xml?rskey=6joxFH&result=1&tab_body=abstract-display" target="_blank" class="image fit"><img src="images/Fig_12.png" width = "294.16666667" height = "auto" alt="Orographic Snowfall Extremes" /></a>
-										<header>
-											<h3><strong>Orographic Snowfall Extremes in the central Wasatch</strong></h3>
-											<p> My master's research focused on the diverse characteristics of orographic
-											snowfall extremes in the central Wasatch, using observational datasets. Click the image
-											above to view a preprint.</p>
-										</header>
-									</article>
-								</div>
-								
-								<div class="col-4 col-12-mobile">
-									<article class="item">
-										<a href="https://www.inscc.utah.edu/~u1371671/LCC_Dashboard/Dashboard_example.png" target="_blank" class="image fit"><img src="images/DASH202212151812.png" width = "294.16666667" height = "auto" alt="LCC Dashboard" /></a>
-										<header>
-											<h3><strong>LCC Dashboard</strong></h3>
-											<p> A side project to my Master's research was the development of an
-												"LCC Dashboard" which displays real-time webcam imagery,
-												NEXRAD radar data, Micro-rain Radar, and Parsivel disdrometer data
-												for the Salt Lake Valley and Little Cottonwood Canyon (LCC).</p>
-										</header>
-									</article>
-								</div>
+    <!-- ── Education ──────────────────────────────────────── -->
+    <div class="page" id="page-education">
+    <section id="education">
+      <div class="container">
+        <span class="section-label">Education</span>
+        <h2 class="section-title">Education</h2>
 
-								<div class="col-4 col-12-mobile">
-									<article class="item">
-										<a href="docs/mwasserstein_MATH0728_final.pdf" target="_blank" class="image fit"><img src="images/velocity_60_2000.png" width = "294.16666667" height = "auto" alt="Velocity Vector Field" /></a>
-										<header>
-											<h3><strong>Math Senior Work</strong></h3>
-											<p> My math senior work derived and examined the
-											Navier-Stokes equations in a rotating reference frame, applied
-											those equations to the shallow water model to derive the shallow
-											water equations, and conducted numerical simulations of the shallow 
-											water model.</p>
-										</header>
-									</article>
-								</div>
+        <div class="timeline">
 
-								<div class="col-4 col-12-mobile">
-									<article class="item">
-										<a href="docs/mwasserstein_research_report.pdf" target="_blank" class="image fit"><img src="images/THOM.png" width = "294.16666667" height = "auto" alt="Map of Simulated Snowfall" /></a>
-										<header>
-											<h3><strong>Physics Senior Work</strong></h3>
-											<p> My physics senior work examined the impact of microphysics parameterizations in simulations of a 2019 Vermont winter storm,
-											using the Weather Research and Forecasting (WRF) model.</p>
-										</header>
-									</article>
-								</div>
-								
-								<div class="col-4 col-12-mobile">
-									<article class="item">
-										<a href="docs/mwasserstein_final_project.html" target="_blank" class="image fit"><img src="images/data_science_thumbnail.png" width = "294.16666667" height = "auto" alt="Ski Resort Elevation" /></a>
-										<header>
-											<h3><strong>Undergrad Data Science Project</strong></h3>
-											<p> For this project, I wanted to qualitatively determine
-											the best ski resort in the western United States based on individual preferences.
-											If you scroll down to the bottom of the report, you can input your own preferences
-											to determine the best place for you to ski.</p>
-										</header>
-									</article>
-								</div>
-							</div>
+          <div class="timeline-item">
+            <div class="timeline-date">
+              <span class="year">2026</span>
+              <span class="period">Expected</span>
+            </div>
+            <div class="timeline-line"></div>
+            <div class="timeline-content">
+              <h3 data-year="Expected 2026">Ph.D. in Atmospheric Sciences</h3>
+              <p class="institution"><strong>University of Utah</strong> · Salt Lake City, UT</p>
+              <p>Dissertation research on orographic precipitation dynamics and extremes
+                 in Utah's Wasatch mountains using observations and numerical modeling.</p>
+            </div>
+          </div>
 
-						</div>
-					</section>
-				
-				<!-- skills -->
-					<section id="skills" class="three">
-						<div class="container">
+          <div class="timeline-item">
+            <div class="timeline-date">
+              <span class="year">2023</span>
+            </div>
+            <div class="timeline-line"></div>
+            <div class="timeline-content">
+              <h3 data-year="2023">M.S. in Atmospheric Sciences</h3>
+              <p class="institution"><strong>University of Utah</strong> · Salt Lake City, UT</p>
+              <p>Thesis: <em>Characteristics of orographic snowfall extremes in the central Wasatch</em>.
+                 Published in <em>Monthly Weather Review</em>.</p>
+            </div>
+          </div>
 
-							<header>
-								<h2>Skills</h2>
-							</header>
-							
-							<p style="text-align:left;"><span class="icon solid fa-database"> <strong> Computer</strong>: Mac OS, Linux command line, WRF, CM1</span><br>
-							<span class="icon solid fa-code"> <strong>Programming</strong>: Python (primary), R, Mathematica, LaTeX</span><br>
-							<span class="icon solid fa-globe"> <strong> Languages</strong>: English, Spanish</span></p>
+          <div class="timeline-item">
+            <div class="timeline-date">
+              <span class="year">2021</span>
+            </div>
+            <div class="timeline-line"></div>
+            <div class="timeline-content">
+              <h3 data-year="2021">B.A. in Physics</h3>
+              <p class="institution"><strong>Middlebury College</strong> · Middlebury, VT</p>
+              <p>Senior thesis examined microphysics parameterizations in WRF simulations of a
+                 Vermont winter storm. Additional coursework in mathematics and data science.</p>
+            </div>
+          </div>
 
-						</div>
-					</section>
+        </div>
+      </div>
+    </section>
 
-				<!-- Contact -->
-					<section id="contact" class="four">
-						<div class="container">
+    </div><!-- /page-education -->
 
-							<header>
-								<h2>Contact</h2>
-							</header>
+    <!-- ── Experience ─────────────────────────────────────── -->
+    <div class="page" id="page-experience">
+    <section id="experience">
+      <div class="container">
+        <span class="section-label">Experience</span>
+        <h2 class="section-title">Research Experience</h2>
 
-							<p style="text-align:left;"><strong> Email</strong>: <a href="mailto:michael.wasserstein@utah.edu" target="_blank"> michael.wasserstein@utah.edu</a></p>
+        <div class="timeline">
 
-					</section>
+          <div class="timeline-item">
+            <div class="timeline-date">
+              <span class="year">Present</span>
+              <span class="period">2023 –</span>
+            </div>
+            <div class="timeline-line"></div>
+            <div class="timeline-content">
+              <h3 data-year="2023 – Present">PhD Research Assistant</h3>
+              <p class="institution">
+                <strong>Dept. of Atmospheric Sciences, University of Utah</strong> · Salt Lake City, UT
+              </p>
+              <p>Conducting research on orographic precipitation dynamics and extreme snowfall events
+                 in the Wasatch mountains. Developing high-resolution numerical simulations with the
+                 WRF model, analyzing large observational datasets, and supporting the SNOWSCAPE
+                 field campaign through real-time instrument monitoring dashboards.</p>
+            </div>
+          </div>
 
-			</div>
+          <div class="timeline-item">
+            <div class="timeline-date">
+              <span class="year">2023</span>
+              <span class="period">2021 –</span>
+            </div>
+            <div class="timeline-line"></div>
+            <div class="timeline-content">
+              <h3 data-year="2021 – 2023">M.S. Research Assistant</h3>
+              <p class="institution">
+                <strong>Dept. of Atmospheric Sciences, University of Utah</strong> · Salt Lake City, UT
+              </p>
+              <p>Characterized extreme orographic snowfall events using multi-decade observational
+                 records from Little Cottonwood Canyon. Built and deployed a real-time observational
+                 dashboard integrating radar, disdrometer, and webcam data for field monitoring.</p>
+            </div>
+          </div>
 
+        </div>
+      </div>
+    </section>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+    </div><!-- /page-experience -->
 
-	</body>
+    <!-- ── Projects ───────────────────────────────────────── -->
+    <div class="page" id="page-projects">
+    <section id="projects">
+      <div class="container">
+        <span class="section-label">Projects</span>
+        <h2 class="section-title">Selected Work</h2>
+
+        <div class="projects-grid">
+
+          <div class="project-card">
+            <a href="https://www.inscc.utah.edu/~u1371671/SNOWSCAPE_Dashboard/DASH_example.jpg" target="_blank" class="thumb">
+              <img src="images/DASH_202602181549.jpg" alt="SNOWSCAPE Dashboard" />
+            </a>
+            <div class="card-body">
+              <h3>SNOWSCAPE Dashboard</h3>
+              <p>Real-time operational dashboard supporting the SNOWSCAPE field campaign,
+                 displaying quasi-real-time data from multiple instruments deployed across
+                 the northern Wasatch mountains.</p>
+              <a href="https://www.inscc.utah.edu/~u1371671/SNOWSCAPE_Dashboard/DASH_example.jpg" target="_blank" class="card-link">
+                View dashboard <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <a href="https://journals.ametsoc.org/view/journals/mwre/aop/MWR-D-23-0206.1/MWR-D-23-0206.1.xml" target="_blank" class="thumb">
+              <img src="images/Fig_12.png" alt="Orographic Snowfall Extremes" />
+            </a>
+            <div class="card-body">
+              <h3>Orographic Snowfall Extremes — Wasatch</h3>
+              <p>Master's research characterizing the diverse synoptic and mesoscale
+                 environments associated with extreme orographic snowfall events in
+                 the central Wasatch, published in <em>Monthly Weather Review</em>.</p>
+              <a href="https://journals.ametsoc.org/view/journals/mwre/aop/MWR-D-23-0206.1/MWR-D-23-0206.1.xml" target="_blank" class="card-link">
+                Read paper <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <a href="https://www.inscc.utah.edu/~u1371671/LCC_Dashboard/Dashboard_example.png" target="_blank" class="thumb">
+              <img src="images/DASH202212151812.png" alt="LCC Dashboard" />
+            </a>
+            <div class="card-body">
+              <h3>LCC Observational Dashboard</h3>
+              <p>Developed a real-time monitoring dashboard integrating webcam imagery,
+                 NEXRAD radar, Micro-Rain Radar, and Parsivel disdrometer data for
+                 Little Cottonwood Canyon field operations.</p>
+              <a href="https://www.inscc.utah.edu/~u1371671/LCC_Dashboard/Dashboard_example.png" target="_blank" class="card-link">
+                View dashboard <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <a href="docs/mwasserstein_MATH0728_final.pdf" target="_blank" class="thumb">
+              <img src="images/velocity_60_2000.png" alt="Shallow Water Model" />
+            </a>
+            <div class="card-body">
+              <h3>Shallow Water Model — Navier-Stokes</h3>
+              <p>Derived the Navier-Stokes equations in a rotating reference frame, reduced
+                 them to the shallow water equations, and implemented numerical simulations
+                 of the model as undergraduate math senior work.</p>
+              <a href="docs/mwasserstein_MATH0728_final.pdf" target="_blank" class="card-link">
+                View report <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <a href="docs/mwasserstein_research_report.pdf" target="_blank" class="thumb">
+              <img src="images/THOM.png" alt="WRF Microphysics" />
+            </a>
+            <div class="card-body">
+              <h3>WRF Microphysics Sensitivity Study</h3>
+              <p>Investigated the impact of microphysics parameterization schemes on
+                 WRF simulations of a 2019 Vermont winter storm, comparing modeled
+                 and observed snowfall distributions.</p>
+              <a href="docs/mwasserstein_research_report.pdf" target="_blank" class="card-link">
+                View report <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <a href="docs/mwasserstein_final_project.html" target="_blank" class="thumb">
+              <img src="images/data_science_thumbnail.png" alt="Ski Resort Analysis" />
+            </a>
+            <div class="card-body">
+              <h3>Ski Resort Preference Analysis</h3>
+              <p>Data science project quantifying ski resort quality across the western
+                 U.S. using multi-attribute scoring. Includes an interactive tool
+                 for users to input personal preferences and find their ideal resort.</p>
+              <a href="docs/mwasserstein_final_project.html" target="_blank" class="card-link">
+                Explore project <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    </div><!-- /page-projects -->
+
+    <!-- ── Skills ─────────────────────────────────────────── -->
+    <div class="page" id="page-skills">
+    <section id="skills">
+      <div class="container">
+        <span class="section-label">Skills</span>
+        <h2 class="section-title">Skills &amp; Tools</h2>
+
+        <div class="skills-grid">
+
+          <div class="skill-group">
+            <h3>Programming</h3>
+            <div class="skill-tags">
+              <span class="tag">Python</span>
+              <span class="tag">R</span>
+              <span class="tag">Mathematica</span>
+              <span class="tag">LaTeX</span>
+              <span class="tag">Bash / Shell</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h3>Numerical Modeling</h3>
+            <div class="skill-tags">
+              <span class="tag">WRF</span>
+              <span class="tag">CM1</span>
+              <span class="tag">Numerical Methods</span>
+              <span class="tag">Sensitivity Analysis</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h3>Data Science</h3>
+            <div class="skill-tags">
+              <span class="tag">Data Analysis</span>
+              <span class="tag">Statistical Modeling</span>
+              <span class="tag">Machine Learning</span>
+              <span class="tag">Data Visualization</span>
+              <span class="tag">xarray / pandas</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h3>Systems &amp; Languages</h3>
+            <div class="skill-tags">
+              <span class="tag">Linux</span>
+              <span class="tag">macOS</span>
+              <span class="tag">HPC / SLURM</span>
+              <span class="tag">English</span>
+              <span class="tag">Spanish</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    </div><!-- /page-skills -->
+
+    <!-- ── Contact ────────────────────────────────────────── -->
+    <div class="page" id="page-contact">
+    <section id="contact">
+      <div class="container">
+        <span class="section-label">Contact</span>
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="contact-subtitle">
+          I'm open to research collaborations, data science and engineering opportunities,
+          and general inquiries. Feel free to reach out.
+        </p>
+
+        <div class="contact-links">
+          <a href="mailto:michael.wasserstein@utah.edu" class="contact-btn">
+            <i class="fas fa-envelope"></i> michael.wasserstein@utah.edu
+          </a>
+          <a href="https://www.linkedin.com/in/michael-wasserstein-381563161/" target="_blank" class="contact-btn">
+            <i class="fab fa-linkedin-in"></i> LinkedIn
+          </a>
+          <a href="https://github.com/mwasserstein" target="_blank" class="contact-btn">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+          <a href="docs/Michael_Wasserstein_CV.pdf" target="_blank" class="contact-btn">
+            <i class="fas fa-file-alt"></i> Download CV
+          </a>
+        </div>
+      </div>
+    </section>
+
+    </div><!-- /page-contact -->
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Michael Wasserstein</p>
+  </footer>
+
+  <!-- ── Scripts ────────────────────────────────────────── -->
+  <script>
+    // Navbar shadow
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // Mobile hamburger
+    const hamburger = document.getElementById('hamburger');
+    const navMobile = document.getElementById('nav-mobile');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navMobile.classList.toggle('open');
+    });
+
+    // Page switching
+    function showPage(name) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      const target = document.getElementById('page-' + name);
+      if (target) {
+        target.classList.add('active');
+        window.scrollTo(0, 0);
+      }
+      // Update active nav link
+      document.querySelectorAll('[data-page]').forEach(a => {
+        a.classList.toggle('active', a.dataset.page === name);
+      });
+      // Update URL hash without jumping
+      history.replaceState(null, '', name === 'hero' ? '/' : '#' + name);
+    }
+
+    // Wire up all data-page links
+    document.querySelectorAll('[data-page]').forEach(el => {
+      el.addEventListener('click', e => {
+        e.preventDefault();
+        const page = el.dataset.page;
+        showPage(page);
+        // Close mobile menu if open
+        hamburger.classList.remove('open');
+        navMobile.classList.remove('open');
+      });
+    });
+
+    // Logo goes home
+    document.querySelector('.nav-logo').addEventListener('click', e => {
+      e.preventDefault();
+      showPage('hero');
+    });
+
+    // Handle direct URL hash on load
+    const hash = window.location.hash.replace('#', '');
+    if (hash) showPage(hash);
+  </script>
+
+</body>
 </html>
