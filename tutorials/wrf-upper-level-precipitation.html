@@ -189,19 +189,21 @@
       </a>
 
       <div class="tut-label">Tutorial · WRF Modification</div>
-      <h1>Outputting Simulated Accumulated Precipitation at Upper Levels in WRF</h1>
-      <p class="meta">Michael Wasserstein &nbsp;·&nbsp; June 2026 &nbsp;·&nbsp; Thompson microphysics scheme</p>
+      <h1>Outputting simulated accumulated precipitation at upper levels in WRF</h1>
+      <p class="meta">Michael Wasserstein &nbsp;·&nbsp; June 2026</p>
 
       <p class="intro">
         This tutorial describes how to modify the WRF model source code to output a new 3D
         variable, <code>RAINNC3d</code>, that stores accumulated total grid-scale precipitation
-        at every model level — not just at the surface. The modification targets the Thompson
-        microphysics scheme and requires changes to four files:
-        <code>Registry/Registry.EM_COMMON</code>,
-        <code>phys/module_mp_thompson.F</code>,
-        <code>phys/module_microphysics_driver.F</code>, and
-        <code>dyn_em/solve_em.F</code>.
+        at every model level in addition to the standard surface output. 
+        This tutorial is for the Thompson microphysics scheme and requires changes to four files:
       </p>
+      <ul style="margin: -.5rem 0 1.5rem 1.25rem; line-height: 2;">
+        <li><code>Registry/Registry.EM_COMMON</code></li>
+        <li><code>phys/module_mp_thompson.F</code></li>
+        <li><code>phys/module_microphysics_driver.F</code></li>
+        <li><code>dyn_em/solve_em.F</code></li>
+      </ul>
 
       <!-- Step 1 -->
       <div class="tut-step">
