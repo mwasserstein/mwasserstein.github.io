@@ -217,13 +217,14 @@
           Add the following line to the registry:
         </p>
 <pre><code><span class="comment">#=========================================================
-# Modified by Michael Wasserstein 2 Mar 2026 — precip at a level
+# Modified by Michael Wasserstein 2 Mar 2026 — precip at a upper levels
 </span>state    real  RAINNC3d   ikj   misc   1   -   rh01du   "RAINNC3d"   \
          "ACCUMULATED TOTAL GRID SCALE PRECIPITATION at levels"   "mm"
 <span class="comment">#=========================================================</span></code></pre>
         <p>
           The <code>ikj</code> dimension specifier makes this a 3D variable covering all
-          horizontal grid points and all vertical levels in the domain.
+          horizontal grid points and all vertical levels in the domain, in contrast to the standard
+          RAINNC variable for surface precipitation, which only has ik.
         </p>
       </div>
 
@@ -231,11 +232,12 @@
       <div class="tut-step">
         <h2><span class="step-num">2</span> Modify the Thompson Microphysics Scheme</h2>
         <p>
-          Open <code>phys/module_mp_thompson.F</code>. Search for every occurrence of
+          The next step is to open the Thompson microphysics code,
+          <code>phys/module_mp_thompson.F</code>, and find every occurrence of
           <code>RAINNC</code> and add the 3D counterpart alongside it.
         </p>
 
-        <h3>Add <code>RAINNC3d</code> to the driver subroutine signature (line&nbsp;979)</h3>
+        <h3>Add <code>RAINNC3d</code> to the driver subroutine (line&nbsp;979)</h3>
 <pre><code>SUBROUTINE mp_gt_driver(qv, qc, qr, qi, qs, qg, ni, nr, nc,       &
                         nwfa, nifa, nwfa2d, nifa2d,               &
                         th, pii, p, w, dz, dt_in, itimestep,      &
@@ -253,7 +255,7 @@ REAL, DIMENSION(ims:ime, kms:kme, jms:jme), INTENT(INOUT):: &
                     <span class="var">RAINNC3d</span>
 <span class="comment">!..==================================================================</span></code></pre>
 
-        <h3>Declare local 3D accumulation arrays (line&nbsp;1078)</h3>
+        <h3>Declare local 3D accumulation arrays for each precipitating hydrometoer type (line&nbsp;1078)</h3>
 <pre><code><span class="comment">!=================================================================
 !.. Modified by Michael Wasserstein to get precip at upper levels
 !.. February 24, 2026</span>
