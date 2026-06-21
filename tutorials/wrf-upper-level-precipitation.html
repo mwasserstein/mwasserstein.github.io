@@ -196,7 +196,7 @@
         This tutorial describes how to modify the WRF model source code to output a new 3D
         variable, <code>RAINNC3d</code>, that stores accumulated total grid-scale precipitation
         at every model level in addition to the standard surface output. 
-        This tutorial is for the Thompson microphysics scheme and requires changes to four files:
+        This tutorial is for the <a href="https://journals.ametsoc.org/view/journals/mwre/136/12/2008mwr2387.1.xml" target="_blank">Thompson microphysics scheme</a> and requires changes to four files:
       </p>
       <ul style="margin: -.5rem 0 1.5rem 1.25rem; line-height: 2;">
         <li><code>Registry/Registry.EM_COMMON</code></li>
@@ -204,6 +204,8 @@
         <li><code>phys/module_microphysics_driver.F</code></li>
         <li><code>dyn_em/solve_em.F</code></li>
       </ul>
+
+      Using similar techniques, this modification can be made for other microphysics schemes as well.
 
       <!-- Step 1 -->
       <div class="tut-step">
