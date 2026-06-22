@@ -195,18 +195,22 @@
       <p class="intro">
         This tutorial describes how to modify the WRF model source code to output a new 3D
         variable, <code>RAINNC3d</code>, that stores accumulated total grid-scale precipitation
-        at every model level in addition to the standard surface output. 
+        at every model level in addition to the standard surface output. Throughout the tutorial
+        I will share line numbers from the WRF that I used for modifications, but it is likely that
+        line numbers in different WRF installations or versions will be different.
         This tutorial is for the <a href="https://journals.ametsoc.org/view/journals/mwre/136/12/2008mwr2387.1.xml" target="_blank">Thompson microphysics scheme</a> and requires changes to four files:
       </p>
+
+      <ul style="margin: -.5rem 0 1.5rem 1.25rem; line-height: 2;">
         <li><code>Registry/Registry.EM_COMMON</code></li>
         <li><code>phys/module_mp_thompson.F</code></li>
         <li><code>phys/module_microphysics_driver.F</code></li>
         <li><code>dyn_em/solve_em.F</code></li>
       </ul>
-
+     
+      <p>
       Using similar techniques, this modification can be made for other microphysics schemes as well.
-
-      <ul style="margin: -.5rem 0 1.5rem 1.25rem; line-height: 2;">
+      </p>
 
 
       <!-- Step 1 -->
@@ -226,7 +230,7 @@
         <p>
           The <code>ikj</code> dimension specifier makes this a 3D variable covering all
           horizontal grid points and all vertical levels in the domain, in contrast to the standard
-          RAINNC variable for surface precipitation, which only has ik.
+          RAINNC variable for surface precipitation, which only has i and k.
         </p>
       </div>
 
@@ -239,7 +243,9 @@
           <code>RAINNC</code> and add the 3D counterpart alongside it.
         </p>
 
-        <h3>Add <code>RAINNC3d</code> to the driver subroutine (line&nbsp;979)</h3>
+      <ul>
+        <li>Add <code>RAINNC3d</code> to the driver subroutine (line&nbsp;979)</li>
+      </ul>
 <pre><code>SUBROUTINE mp_gt_driver(qv, qc, qr, qi, qs, qg, ni, nr, nc,       &
                         nwfa, nifa, nwfa2d, nifa2d,               &
                         th, pii, p, w, dz, dt_in, itimestep,      &
@@ -248,7 +254,7 @@
                         SNOWNC, SNOWNCV,                           &
                         GRAUPELNC, GRAUPELNCV, SR,                 &</code></pre>
 
-        <h3>Declare <code>RAINNC3d</code> as a 3D intent variable (line&nbsp;1022)</h3>
+        <ul><li>Declare <code>RAINNC3d</code> as a 3D intent variable (line&nbsp;1022)</li></ul>
 <pre><code>REAL, DIMENSION(ims:ime, jms:jme), INTENT(INOUT):: &
                     RAINNC, RAINNCV, SR
 <span class="comment">!..==================================================================
@@ -257,8 +263,16 @@ REAL, DIMENSION(ims:ime, kms:kme, jms:jme), INTENT(INOUT):: &
                     <span class="var">RAINNC3d</span>
 <span class="comment">!..==================================================================</span></code></pre>
 
-        <h3>Declare local 3D accumulation arrays for each precipitating hydrometoer type (line&nbsp;1078)</h3>
-<pre><code><span class="comment">!=================================================================
+        <ul><li>
+          In the Thompson scheme, precipitation is calclated for each precipitating hydrometeor type,
+          including rain, snow, graupel, and ice. Here, we create 3D variables analogous to the
+          1D variables for each hydrometeor type. The <code>pcp*</code> variables will store an
+          entire 3D array, and the <code>ppt*</code> variables will be used for the summation of
+          preciptiation (line&nbsp;1078).
+        </li></ul>
+<pre><code>
+REAL, DIMENSION(its:ite, jts:jte):: pcp_ra, pcp_sn, pcp_gr, pcp_ic
+<span class="comment">!=================================================================</span>
 !.. Modified by Michael Wasserstein to get precip at upper levels
 !.. February 24, 2026</span>
 REAL, DIMENSION(its:ite, kts:kte, jts:jte) :: pcp_ra3d, pcp_sn3d, &
@@ -266,7 +280,9 @@ REAL, DIMENSION(its:ite, kts:kte, jts:jte) :: pcp_ra3d, pcp_sn3d, &
 REAL, DIMENSION(kts:kte) :: pptrain3d, pptsnow3d, pptgraul3d, pptice3d
 <span class="comment">!=================================================================</span></code></pre>
 
-        <h3>Initialize the 1D accumulators to zero (line&nbsp;1163)</h3>
+        <ul>
+        <li>Initialize precipitation accumulators to zero (line&nbsp;1163).</li>
+      </ul>
 <pre><code><span class="comment">!================================================================
 !.. Michael Wasserstein Feb 24 2026 edits</span>
 pptrain3d  = 0.
@@ -275,7 +291,7 @@ pptgraul3d = 0.
 pptice3d   = 0.
 <span class="comment">!================================================================</span></code></pre>
 
-        <h3>Pass the 3D arrays into <code>mp_thompson</code> (line&nbsp;1232)</h3>
+        <ul><li>Pass the 3D arrays into <code>mp_thompson</code> function (line&nbsp;1232).</li></ul>
 <pre><code>call mp_thompson(qv1d, qc1d, qi1d, qr1d, qs1d, qg1d, ni1d,    &
              nr1d, nc1d, nwfa1d, nifa1d, t1d, p1d, w1d, dz1d, &
              pptrain, pptsnow, pptgraul, pptice,               &
@@ -284,7 +300,7 @@ pptice3d   = 0.
              rainprod1d, evapprod1d,                           &
 #endif</code></pre>
 
-        <h3>Store 3D results alongside the 2D accumulated precipitation (line&nbsp;1244)</h3>
+        <ul><li>Here, the modifications store the 3D results in the same way as the 2D results. (line&nbsp;1244)</li></ul>
 <pre><code>pcp_ra(i,j) = pptrain
 pcp_sn(i,j) = pptsnow
 pcp_gr(i,j) = pptgraul
@@ -308,7 +324,7 @@ RAINNC(i,j)  = RAINNC(i,j) + pptrain + pptsnow + pptgraul + pptice
 <span class="keyword">enddo</span>
 <span class="comment">!===========================================================</span></code></pre>
 
-        <h3>Update the <code>mp_thompson</code> subroutine signature (line&nbsp;1491)</h3>
+        <ul><li>Update the <code>mp_thompson</code> subroutine (line&nbsp;1491).</li></ul>
 <pre><code>subroutine mp_thompson (        &
                     qv1d, qc1d, qi1d, qr1d, qs1d, qg1d,         &
                     ni1d, nr1d, nc1d, nwfa1d, nifa1d,            &
@@ -316,7 +332,7 @@ RAINNC(i,j)  = RAINNC(i,j) + pptrain + pptsnow + pptgraul + pptice
                     pptrain, pptsnow, pptgraul, pptice,           &
                     <span class="var">pptrain3d, pptsnow3d, pptgraul3d, pptice3d</span>, & <span class="comment">! Wasserstein</span></code></pre>
 
-        <h3>Declare the 3D variables in the subroutine (line&nbsp;1515)</h3>
+        <ul><li>Declare the added 3D variables in the subroutine (line&nbsp;1515).</li></ul>
 <pre><code>REAL, INTENT(INOUT):: pptrain, pptsnow, pptgraul, pptice
 <span class="comment">! Michael Wasserstein Feb 26 2026</span>
 REAL, DIMENSION(kts:kte), INTENT(INOUT):: &
@@ -325,11 +341,11 @@ REAL, DIMENSION(kts:kte), INTENT(INOUT):: &
         <p>
           The microphysics scheme accumulates precipitation for each hydrometeor type (rain,
           ice, snow, graupel) based on whether the mixing ratio exceeds a threshold
-          <code>R1</code> and using the sedimentation rate at each level. Add the following
-          loop after each existing 2D accumulation line.
+          <code>R1</code> and using the sedimentation rate at each level. After each
+          existing 2D accumulation line, we add the following edits for 3D accumulation:
         </p>
 
-        <h3>Rain accumulation at each level (line&nbsp;3522)</h3>
+        <h3>Rain (line&nbsp;3522)</h3>
 <pre><code><span class="keyword">if</span> (rr(kts).gt.R1*1000.) &
   pptrain = pptrain + sed_r(kts)*DT*onstep(1)
 <span class="comment">!.. Michael Wasserstein edits Feb 24 2026</span>
@@ -338,7 +354,7 @@ REAL, DIMENSION(kts:kte), INTENT(INOUT):: &
     pptrain3d(k) = pptrain3d(k) + sed_r(k)*DT*onstep(1)
 <span class="keyword">enddo</span></code></pre>
 
-        <h3>Ice accumulation at each level (line&nbsp;3580)</h3>
+        <h3>Ice (line&nbsp;3580)</h3>
 <pre><code><span class="keyword">if</span> (ri(kts).gt.R1*1000.) &
   pptice = pptice + sed_i(kts)*DT*onstep(2)
 <span class="comment">!.. Michael Wasserstein edits Feb 24 2026</span>
@@ -347,7 +363,7 @@ REAL, DIMENSION(kts:kte), INTENT(INOUT):: &
     pptice3d(k) = pptice3d(k) + sed_i(k)*DT*onstep(2)
 <span class="keyword">enddo</span></code></pre>
 
-        <h3>Snow accumulation at each level (line&nbsp;3615)</h3>
+        <h3>Snow (line&nbsp;3615)</h3>
 <pre><code><span class="keyword">if</span> (rs(kts).gt.R1*1000.) &
   pptsnow = pptsnow + sed_s(kts)*DT*onstep(3)
 <span class="comment">!.. Michael Wasserstein edits Feb 24 2026</span>
@@ -356,7 +372,7 @@ REAL, DIMENSION(kts:kte), INTENT(INOUT):: &
     pptsnow3d(k) = pptsnow3d(k) + sed_s(k)*DT*onstep(3)
 <span class="keyword">enddo</span></code></pre>
 
-        <h3>Graupel accumulation at each level (line&nbsp;3649)</h3>
+        <h3>Graupel (line&nbsp;3649)</h3>
 <pre><code><span class="keyword">if</span> (rg(kts).gt.R1*1000.) &
   pptgraul = pptgraul + sed_g(kts)*DT*onstep(4)
 <span class="comment">!.. Michael Wasserstein edits Feb 24 2026</span>
@@ -370,18 +386,18 @@ REAL, DIMENSION(kts:kte), INTENT(INOUT):: &
       <div class="tut-step">
         <h2><span class="step-num">3</span> Modify <code>module_microphysics_driver.F</code></h2>
         <p>
-          Open <code>phys/module_microphysics_driver.F</code> and search for every occurrence
+          Next, we open <code>phys/module_microphysics_driver.F</code> and search for every occurrence
           of <code>rainnc</code>, adding <code>RAINNC3d</code> alongside each one.
         </p>
 
-        <h3>Add to the microphysics_driver subroutine signature (line&nbsp;95)</h3>
+        <ul><li>Add to the microphysics_driver subroutine (<code>SUBROUTINE microphysics_driver</code>;line&nbsp;95)</li></ul>
 <pre><code>                  ,rainnc,    rainncv                                &
                   ,<span class="var">RAINNC3d</span>                                          & <span class="comment">! Michael Wasserstein 2/24/26</span></code></pre>
 
-        <h3>Declare the variable in the subroutine (line&nbsp;676)</h3>
+        <ul><li>Declare the variable in the subroutine (line&nbsp;676)</li></ul>
 <pre><code>REAL, DIMENSION( ims:ime , kms:kme, jms:jme ) :: <span class="var">RAINNC3d</span>  <span class="comment">! Michael Wasserstein Mar 2 2026</span></code></pre>
 
-        <h3>Pass <code>RAINNC3d</code> in the microphysics driver call (line&nbsp;1055)</h3>
+        <ul><li>Pass <code>RAINNC3d</code> in the microphysics driver call (line&nbsp;1055)</li></ul>
 <pre><code>                 RAINNC=RAINNC,                      &
                  RAINNCV=RAINNCV,                    &
                  <span class="var">RAINNC3d=RAINNC3d</span>,                  & <span class="comment">! Michael Wasserstein 3d rain</span></code></pre>
@@ -394,9 +410,9 @@ REAL, DIMENSION(kts:kte), INTENT(INOUT):: &
       <div class="tut-step">
         <h2><span class="step-num">4</span> Modify <code>solve_em.F</code></h2>
         <p>
-          Open <code>dyn_em/solve_em.F</code>. The microphysics driver is called near
+          The last file to modify is <code>dyn_em/solve_em.F</code>. The microphysics driver is called near
           line&nbsp;3603. Only one small addition is needed at line&nbsp;3692 to pass the
-          new variable through:
+          new variable in the microphysics driver:
         </p>
 <pre><code>     &        , RAINNC=grid%rainnc, RAINNCV=grid%rainncv                 &
      &        , <span class="var">RAINNC3d=grid%rainnc3d</span>                                   & <span class="comment">! Michael Wasserstein Feb 24 2026</span></code></pre>
@@ -408,7 +424,7 @@ REAL, DIMENSION(kts:kte), INTENT(INOUT):: &
         <p>
           After making all modifications, reconfigure and recompile WRF. Once the model
           is rerun, the output will contain a new variable <code>RAINNC3D</code> giving the
-          effective accumulated precipitation at every vertical level in the domain.
+          simulated effective accumulated precipitation at every vertical level in the domain.
         </p>
       </div>
 
@@ -416,11 +432,10 @@ REAL, DIMENSION(kts:kte), INTENT(INOUT):: &
       <div class="applications">
         <h2>Applications: Sub-Cloud Sublimation</h2>
         <p>
-          One key use of <code>RAINNC3D</code> is diagnosing sub-cloud sublimation — the
-          loss of precipitation between upper levels and the surface. For example, comparing
-          the effective precipitation rate at 3250&nbsp;m&nbsp;MSL (~2000&nbsp;m&nbsp;AGL)
-          to the rate at 1750&nbsp;m&nbsp;MSL (~500&nbsp;m&nbsp;AGL) can reveal how much
-          precipitation evaporates before reaching the ground.
+        One Useful application for this includes understanding the influence 
+        of sub-cloud sublimation on ub stirns. For instance, one simulation of a March
+        2019 winter storm in the Wasatch shows precipitation loss over the Salt Lake
+        Valley due to sublimation: 
         </p>
 
         <div class="tut-figure">
@@ -437,13 +452,17 @@ REAL, DIMENSION(kts:kte), INTENT(INOUT):: &
         </div>
 
         <p>
-          Effective precipitation rates at 3250&nbsp;m MSL are generally between
-          0.75 and 1.75&nbsp;mm&nbsp;h<sup>−1</sup> over the Salt Lake Valley, while rates at
-          1750&nbsp;m MSL are systematically lower due to sub-cloud sublimation. This reduction
-          is apparent in both the difference map (Fig.&nbsp;1c) and the accumulated precipitation
-          time series (Fig.&nbsp;1d), where the upper-level accumulation (blue) consistently
-          exceeds the near-surface accumulation (green).
+          In Fig.&nbsp;1a, notice how effective precipitation rates at 3250&nbsp;m MSL (~2000&nbsp;m AGL) 
+          for the analysis time are generally between 0.75 and 1.75&nbsp;mm&nbsp;h<sup>−1</sup> over the black 
+          dashed box outlining the Salt Lake Valley. But at 1750&nbsp;m MSL (~500&nbsp;m AGL), 
+          precipitation rates are lower due to sub-cloud sublimation (Fig.&nbsp;1b). 
+          That can be seen by looking at a difference plot of the rates at 3250&nbsp;m MSL – 
+          the rates at 1750&nbsp;m MSL (Fig.&nbsp;1c) or a time series plot indicating the effective
+          accumulated precipitation over time (Fig.&nbsp;1d), which indicates greater accumulated
+          precipitation at 3250&nbsp;m MSL (blue line) compared to 1750&nbsp;m MSL (green line).
         </p>
+
+        <p>This microphysical process can also viewed in a cross section over the Salt Lake Valley:</p>
 
         <div class="tut-figure">
           <img src="../images/Fig_2.png" alt="Cross-section of precipitation rate with sublimation and deposition contours" />
@@ -458,9 +477,10 @@ REAL, DIMENSION(kts:kte), INTENT(INOUT):: &
 
         <p>
           The cross-section in Fig.&nbsp;2 shows the highest effective precipitation rates
-          near 3000&nbsp;m MSL, decreasing with height loss toward the surface. Sublimation
+          near 3000&nbsp;m MSL, decreasing with height loss toward the surface. Sublimation (dashed black contour)
           is greatest between roughly 1800 and 2500&nbsp;m MSL over the Salt Lake Valley,
-          consistent with the dashed contour in Fig.&nbsp;2.
+          consistent with the dashed contour in Fig.&nbsp;2, indicating sublimation rates
+          ≤ −0.5 × 10<sup>−4</sup>&nbsp;g&nbsp;kg<sup>−1</sup>&nbsp;s<sup>−1</sup>.
         </p>
       </div>
 
